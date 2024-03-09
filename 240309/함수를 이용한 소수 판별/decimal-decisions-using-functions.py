@@ -1,19 +1,21 @@
-num1, num2 = tuple(map(int, input().split()))
-cnt = 0
+# 변수 선언 및 입력:
+a, b = tuple(map(int, input().split()))
 
-def isSosu(num):
-    if num == 1 or num == 2:
-        return True
 
-    for i in range(2, num):
-        if num % (i) == 0:
+def is_prime(n):
+    if n == 1:
+        return False
+
+    for i in range(2, n):
+        if n % i == 0:
             return False
 
     return True
 
-for i in range(num1, num2+1):
-    if isSosu(i):
-        cnt += i
 
+sum_val = 0
+for i in range(a, b + 1):
+    if is_prime(i):
+        sum_val += i
 
-print(cnt)
+print(sum_val)
