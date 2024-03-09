@@ -2,6 +2,9 @@ num1, num2 = tuple(map(int, input().split()))
 cnt = 0
 
 def isSosu(num):
+    if num == 1 or num == 2:
+        return True
+
     for i in range(2, num):
         if num % (i) == 0:
             return False
