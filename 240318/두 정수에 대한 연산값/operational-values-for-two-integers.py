@@ -18,10 +18,8 @@ def calNume(num1, num2):
     num1 = b
     num2 = a
 
-    print(num1, num2
+    return num1 , num2
 
-    return num1, num2
-
-calNume(num1, num2)
+num1, num2 = calNume(num1, num2)
 
 print(num1, num2)
