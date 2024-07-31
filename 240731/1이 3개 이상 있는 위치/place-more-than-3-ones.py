@@ -23,7 +23,7 @@ for i in range(total_num):
     new_arr = input().split()
     array.append(new_arr)
 
-for x in range(total_num - 1):
+for x in range(total_num):
     for y in range(total_num - 1):
         calNum(x, y)
 
