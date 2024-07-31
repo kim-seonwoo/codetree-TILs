@@ -1,15 +1,14 @@
 total_num = int(input())
 array = []
-x, y = 0, 0
 cnt = 0
 dxs, dxy = [0, 1, 0, -1], [1, 0, -1, 0]
 
 def in_range(x, y):
-    return 0 <= x and x < total_num and y < total_num
+    return 0 <= x < total_num and 0 <= y < total_num
 
 def calNum(x, y):
-    small_cnt = 0
     global cnt
+    small_cnt = 0
     for dx, dy in zip(dxs, dxy):
         nx, ny = x + dx, y + dy
 
