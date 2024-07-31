@@ -24,7 +24,7 @@ for i in range(total_num):
     array.append(new_arr)
 
 for x in range(total_num):
-    for y in range(total_num - 1):
+    for y in range(total_num):
         calNum(x, y)
 
 print(cnt)
