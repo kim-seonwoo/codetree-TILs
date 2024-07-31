@@ -23,16 +23,8 @@ for i in range(total_num):
     new_arr = input().split()
     array.append(new_arr)
 
-for i in range(total_num * total_num):
-    calNum(x, y)
-    if x < total_num - 1:
-        x += 1
-    else:
-        x = 0
-        y += 1
-
-# for x in range(total_num):
-#     for y in range(total_num):
-#         calNum(x, y)
+for x in range(total_num):
+    for y in range(total_num):
+        calNum(x, y)
 
 print(cnt)
