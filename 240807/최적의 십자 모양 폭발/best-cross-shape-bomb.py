@@ -1,4 +1,5 @@
 # 변수 선언 및 입력:
+import copy
 
 n = int(input())
 grid = [
@@ -48,7 +49,7 @@ max_pairs = 0
 
 for r in range(n):
     for c in range(n):
-        original_grid = [row[:] for row in grid]
+        original_grid = copy.deepcopy(grid)
         next_grid = bomb_and_apply_gravity(r, c)
         pairs = count_pairs(next_grid)
         max_pairs = max(max_pairs, pairs)
