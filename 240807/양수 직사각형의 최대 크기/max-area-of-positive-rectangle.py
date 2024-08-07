@@ -9,9 +9,9 @@ dp = [[0] * m for _ in range(n)]
 
 # Initialize first row and first column
 for c in range(m):
-    dp[0][c] = grid[0][c]
+    dp[0][c] = grid[0][c] if grid[0][c] > 0 else 0
 for r in range(n):
-    dp[r][0] = grid[r][0]
+    dp[r][0] = grid[r][0] if grid[r][0] > 0 else 0
 
 # Fill dp table
 max_size = 0
