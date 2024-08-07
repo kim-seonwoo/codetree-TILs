@@ -1,55 +1,57 @@
+# 변수 선언 및 입력:
+
+n = int(input())
+grid = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
+
 def in_bomb_range(x, y, center_x, center_y, bomb_range):
     return (x == center_x or y == center_y) and \
            abs(x - center_x) + abs(y - center_y) < bomb_range
 
-def bomb_and_apply_gravity(grid, center_x, center_y):
-    n = len(grid)
+def bomb_and_apply_gravity(center_x, center_y):
     bomb_range = grid[center_x][center_y]
-    
-    # 폭탄 효과 적용
+    next_grid = [
+        [0 for _ in range(n)]
+        for _ in range(n)
+    ]
+
+    # Step1. 폭탄이 터질 위치는 0으로 채워줍니다.
     for i in range(n):
         for j in range(n):
             if in_bomb_range(i, j, center_x, center_y, bomb_range):
                 grid[i][j] = 0
 
-    # 중력 효과 적용
+    # Step2. 폭탄이 터진 이후의 결과를 next_grid에 저장합니다.
     for j in range(n):
-        stack = []
-        for i in range(n-1, -1, -1):
-            if grid[i][j]:
-                stack.append(grid[i][j])
-        
-        for i in range(n-1, -1, -1):
-            if stack:
-                grid[i][j] = stack.pop(0)
-            else:
-                grid[i][j] = 0
+        next_row = n - 1
+        for i in range(n - 1, -1, -1):
+            if grid[i][j] != 0:
+                next_grid[next_row][j] = grid[i][j]
+                next_row -= 1
+                
+    # Step3. next_grid로 값을 반환합니다.
+    return next_grid
 
 def count_pairs(grid):
-    n = len(grid)
-    pair_count = 0
+    pairs = 0
     for i in range(n):
         for j in range(n):
-            if i > 0 and grid[i][j] == grid[i-1][j]:
-                pair_count += 1
-            if j > 0 and grid[i][j] == grid[i][j-1]:
-                pair_count += 1
-    return pair_count
-
-# 입력 받기
-n = int(input())
-original_grid = [list(map(int, input().split())) for _ in range(n)]
+            if i < n - 1 and grid[i][j] == grid[i + 1][j]:
+                pairs += 1
+            if j < n - 1 and grid[i][j] == grid[i][j + 1]:
+                pairs += 1
+    return pairs
 
 max_pairs = 0
 
-for i in range(n):
-    for j in range(n):
-        # 원본 그리드를 복사하여 폭탄 터뜨리기 및 중력 적용
-        grid = [row[:] for row in original_grid]
-        bomb_and_apply_gravity(grid, i, j)
-        # 터뜨린 후 쌍의 개수 세기
-        pairs = count_pairs(grid)
-        if pairs > max_pairs:
-            max_pairs = pairs
+for r in range(n):
+    for c in range(n):
+        original_grid = [row[:] for row in grid]
+        next_grid = bomb_and_apply_gravity(r, c)
+        pairs = count_pairs(next_grid)
+        max_pairs = max(max_pairs, pairs)
+        grid = original_grid  # 원래의 grid로 되돌려줌
 
 print(max_pairs)
