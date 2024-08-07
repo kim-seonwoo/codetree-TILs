@@ -1,49 +1,43 @@
-def count_happy_sequences(n, m, grid):
-    happy_count = 0
+# 변수 선언 및 입력:
+n, m = tuple(map(int, input().split()))
+grid = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
+seq = [0 for _ in range(n)]
 
-    # Count happy sequences in rows
-    for row in range(n):
-        consecutive_count = 1
-        for col in range(1, n):
-            if grid[row][col] == grid[row][col - 1]:
-                consecutive_count += 1
-            else:
-                if consecutive_count >= m:
-                    happy_count += 1
-                consecutive_count = 1
-        # Check the last segment in the row
-        if consecutive_count >= m:
-            happy_count += 1
 
-    # Count happy sequences in columns
-    for col in range(n):
-        consecutive_count = 1
-        for row in range(1, n):
-            if grid[row][col] == grid[row - 1][col]:
-                consecutive_count += 1
-            else:
-                if consecutive_count >= m:
-                    happy_count += 1
-                consecutive_count = 1
-        # Check the last segment in the column
-        if consecutive_count >= m:
-            happy_count += 1
+def is_happy_sequence():
+    # 주어진 seq가 행복한 수열인지 판단하는 함수입니다.
+    consecutive_count, max_ccnt = 1, 1
+    for i in range(1, n):
+        if seq[i - 1] == seq[i]:
+            consecutive_count += 1
+        else:
+            consecutive_count = 1
+        
+        max_ccnt = max(max_ccnt, consecutive_count)
+    
+    # 최대로 연속한 회수가 m이상이면 true를 반환합니다. 
+    return max_ccnt >= m
 
-    return happy_count
 
-# Main program
-import sys
-input = sys.stdin.read
-data = input().splitlines()
+num_happy = 0
 
-first_line = data[0].split()
-n = int(first_line[0])
-m = int(first_line[1])
+# 먼저 가로로 행복한 수열의 수를 셉니다.
+for i in range(n):
+    seq = grid[i][:]
 
-grid = []
-for i in range(1, n + 1):
-    row = list(map(int, data[i].split()))
-    grid.append(row)
+    if is_happy_sequence():
+        num_happy += 1
 
-result = count_happy_sequences(n, m, grid)
-print(result)
+# 세로로 행복한 수열의 수를 셉니다.
+for j in range(n):
+    # 세로로 숫자들을 모아 새로운 수열을 만듭니다.
+    for i in range(n):
+        seq[i] = grid[i][j]
+
+    if is_happy_sequence():
+        num_happy += 1
+
+print(num_happy)
