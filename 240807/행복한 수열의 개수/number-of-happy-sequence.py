@@ -1,8 +1,7 @@
 def count_happy_sequences(n, m, grid):
-    row_happy_count = 0
-    col_happy_count = 0
+    happy_count = 0
 
-    # Row-wise counting
+    # Count happy sequences in rows
     for row in range(n):
         consecutive_count = 1
         for col in range(1, n):
@@ -10,13 +9,13 @@ def count_happy_sequences(n, m, grid):
                 consecutive_count += 1
             else:
                 if consecutive_count >= m:
-                    row_happy_count += 1
+                    happy_count += 1
                 consecutive_count = 1
-        # Check at the end of the row
+        # Check the last segment in the row
         if consecutive_count >= m:
-            row_happy_count += 1
+            happy_count += 1
 
-    # Column-wise counting
+    # Count happy sequences in columns
     for col in range(n):
         consecutive_count = 1
         for row in range(1, n):
@@ -24,13 +23,13 @@ def count_happy_sequences(n, m, grid):
                 consecutive_count += 1
             else:
                 if consecutive_count >= m:
-                    col_happy_count += 1
+                    happy_count += 1
                 consecutive_count = 1
-        # Check at the end of the column
+        # Check the last segment in the column
         if consecutive_count >= m:
-            col_happy_count += 1
+            happy_count += 1
 
-    return row_happy_count + col_happy_count
+    return happy_count
 
 # Main program
 import sys
