@@ -32,16 +32,20 @@ def bomb_and_apply_gravity(center_x, center_y):
                 next_grid[next_row][j] = grid[i][j]
                 next_row -= 1
                 
-    # Step3. next_grid로 값을 반환합니다.
+    # Step3. 원래의 grid 복원
+    for i in range(n):
+        for j in range(n):
+            grid[i][j] = next_grid[i][j]
+
     return next_grid
 
 def count_pairs(grid):
     pairs = 0
     for i in range(n):
         for j in range(n):
-            if i < n - 1 and grid[i][j] == grid[i + 1][j]:
+            if i < n - 1 and grid[i][j] == grid[i + 1][j] and grid[i][j] != 0:
                 pairs += 1
-            if j < n - 1 and grid[i][j] == grid[i][j + 1]:
+            if j < n - 1 and grid[i][j] == grid[i][j + 1] and grid[i][j] != 0:
                 pairs += 1
     return pairs
 
