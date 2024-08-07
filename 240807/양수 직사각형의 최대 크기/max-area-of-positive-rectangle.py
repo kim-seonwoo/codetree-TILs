@@ -1,28 +1,33 @@
-n, m = map(int, input().split())
-grid = []
+# 변수 선언 및 입력:
+
+n, m = tuple(map(int, input().split()))
+grid = [
+    list(map(int, input().split()))
+    for _ in range(n)
+]
+
+
+# (x1, y1), (x2, y2)를 두 꼭지점으로 하는
+# 직사각형에 있는 값이 전부 양수인지 판단합니다.
+def positive_rect(x1, y1, x2, y2):
+    return all([
+        grid[i][j] > 0
+        for i in range(x1, x2 + 1)
+        for j in range(y1, y2 + 1)
+    ])
+
+
+ans = -1
+
+# 직사각형의 양쪽 두 꼭지점 (i, j), (k, l)
+# 를 정하여
+# 해당 직사각형안에 있는 값이 전부 양수일 때만
+# 크기를 갱신합니다.
 for i in range(n):
-    row = list(map(int, input().split()))
-    grid.append(row)
-
-# Initialize dp array
-dp = [[0] * m for _ in range(n)]
-
-# Initialize first row and first column
-for c in range(m):
-    dp[0][c] = grid[0][c] if grid[0][c] > 0 else 0
-for r in range(n):
-    dp[r][0] = grid[r][0] if grid[r][0] > 0 else 0
-
-# Fill dp table
-max_size = 0
-for r in range(1, n):
-    for c in range(1, m):
-        if grid[r][c] > 0:
-            dp[r][c] = min(dp[r-1][c], dp[r][c-1], dp[r-1][c-1]) + 1
-            max_size = max(max_size, dp[r][c])
-
-# Check if there's any positive rectangle
-if max_size == 0:
-    print(-1)
-else:
-    print(max_size * max_size)
+    for j in range(m):
+        for k in range(i, n):
+            for l in range(j, m):
+                if positive_rect(i, j, k, l):
+                    ans = max(ans, 
+                              (k - i + 1) * (l - j + 1))
+print(ans)
