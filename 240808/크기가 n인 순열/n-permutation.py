@@ -9,7 +9,7 @@ def get_permutation(cnt):
         print()
 
     for i in range(1, n + 1):
-        if visited[i];
+        if visited[i]:
             continue
 
         visited[i] = True
