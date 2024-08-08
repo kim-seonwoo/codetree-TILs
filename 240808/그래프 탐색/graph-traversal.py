@@ -10,9 +10,9 @@ graph = [[] for _ in range(n + 1)]
 visited = [False for _ in range(n + 1)]
 
 def dfs(vertex):
+    global count
     for curr_v in graph[vertex]:  # 올바른 리스트 인덱싱 사용
         if not visited[curr_v]:
-            global count
             count += 1
             visited[curr_v] = True
             dfs(curr_v)
