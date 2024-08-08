@@ -19,3 +19,4 @@ def get_permutation(cnt):
 
         visited[i] = False
         picked.pop()
+get_permutation(0)
