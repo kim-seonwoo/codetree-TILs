@@ -18,12 +18,12 @@ def find_permutations(cnt):
     # 1부터 k까지의 각 숫자가 뽑혔을 때의 경우를 탐색합니다.
     for i in range(1, k + 1):
     # append, 함수 호출, pop 순서 기억
-        if cnt == 0 or selected_nums[-1] != selected_nums[-2]:
+        if cnt > 1 and selected_nums[-1] == selected_nums[-2]:
+            continue
+        else:
             selected_nums.append(i)
             find_permutations(cnt + 1)
             selected_nums.pop()
-        else:
-            continue
 
 
 find_permutations(0)
