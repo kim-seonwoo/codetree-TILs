@@ -20,6 +20,7 @@ def dfs(vertex):
 # 간선 정보를 이용해 그래프를 구축
 for edge in grid:
     graph[edge[0]].append(edge[1])
+    graph[edge[1]].append(edge[0])
 
 root_vertex = 1  # 시작 정점을 1로 설정
 visited[root_vertex] = True
