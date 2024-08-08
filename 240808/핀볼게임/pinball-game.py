@@ -60,5 +60,4 @@ grid2 = [
     [1, 1, 1, 1, 1]
 ]
 
-print(pinball_max_time(n1, grid1))  # 출력: 10
 print(pinball_max_time(n2, grid2))  # 출력: 10
