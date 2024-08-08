@@ -16,7 +16,7 @@ def find_permutations(cnt):
     
     # 1부터 k까지의 각 숫자가 뽑혔을 때의 경우를 탐색합니다.
     for i in range(1, k + 1):
-        if cnt => 2 and selected_nums[-1] != i and selected_nums[-2] != i:
+        if cnt => 2 and selected_nums[-1] == i and selected_nums[-2] == i:
             continue
         else:
             selected_nums.append(i)
