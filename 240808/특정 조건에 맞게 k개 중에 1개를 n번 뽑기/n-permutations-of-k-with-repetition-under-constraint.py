@@ -22,6 +22,8 @@ def find_permutations(cnt):
             selected_nums.append(i)
             find_permutations(cnt + 1)
             selected_nums.pop()
+        else:
+            continue
 
 
 find_permutations(0)
