@@ -4,12 +4,12 @@ n, m = tuple(map(int, input().split()))
 
 a = [
     list(map(int, input().split()))
-    for _ in range(n)
+    for _ in range(m)
 ]
 
 visited = [
-    [False for _ in range(m)]
-    for _ in range(n)
+    [False for _ in range(n)]
+    for _ in range(m)
 ]
 
 q = deque()
