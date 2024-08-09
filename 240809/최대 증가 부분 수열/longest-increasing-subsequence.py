@@ -15,6 +15,6 @@ def calList(index):
         calList(index + 1)
 
 dp.append(list_num[0])
-calList(list_num[0])
+calList(1)
 
 print(count + 1)
