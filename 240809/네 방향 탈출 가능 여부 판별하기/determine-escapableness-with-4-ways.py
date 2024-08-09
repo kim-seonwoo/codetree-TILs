@@ -23,7 +23,7 @@ def can_go(x, y):
 def bfs():
     while q:
 
-        x, y = q.popLeft()
+        x, y = q.popleft()
 
         dxs, dys = [0 , 1, 0, -1], [1, 0, -1, 0]
 
