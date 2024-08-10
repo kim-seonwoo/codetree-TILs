@@ -1,4 +1,4 @@
-# 일단 무조건 완전 탐색을 고려해봐라n = int(input())
+n = int(input())
 
 num = [
     list(map(int, input().split()))
