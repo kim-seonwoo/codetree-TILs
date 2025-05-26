@@ -14,7 +14,7 @@ def cal(x, y, plus_i, plus_j):
             else:
                 result += 1
 
-    return result
+    return (plus_i - x + 1) * (plus_j - y + 1)
 
 
 for i in range(n):
