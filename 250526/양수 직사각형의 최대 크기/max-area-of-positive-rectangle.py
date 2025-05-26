@@ -10,7 +10,7 @@ def cal(x, y, plus_i, plus_j):
     for i in range(x, plus_i + 1):
         for j in range(y, plus_j + 1):
             if grid[i][j] < 0:
-                return 0
+                return -1
             else:
                 result += 1
 
@@ -24,7 +24,7 @@ for i in range(n):
                 max_num = max(max_num, cal(i, j, num_i, num_j))
 
 
-if max_num == 0:
+if max_num == -1:
     print(-1)
 else:
     print(max_num)
