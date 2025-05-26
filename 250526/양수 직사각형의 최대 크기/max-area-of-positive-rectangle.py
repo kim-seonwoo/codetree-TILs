@@ -1,21 +1,30 @@
 n, m = map(int, input().split())
 grid = [list(map(int, input().split())) for _ in range(n)]
 
-max_area = 0
+# Please write your code here.
 
-def is_valid(x1, y1, x2, y2):
-    for i in range(x1, x2 + 1):
-        for j in range(y1, y2 + 1):
+max_num = 0
+
+def cal(x, y, plus_i, plus_j):
+    result = 0
+    for i in range(x, plus_i + 1):
+        for j in range(y, plus_j + 1):
             if grid[i][j] < 0:
-                return False
-    return True
+                return 0
+            else:
+                result += 1
+
+    return (plus_i + 1 - x) * (plus_j + 1 - y)
+
 
 for i in range(n):
     for j in range(m):
-        for end_i in range(i, n):
-            for end_j in range(j, m):
-                if is_valid(i, j, end_i, end_j):
-                    area = (end_i - i + 1) * (end_j - j + 1)
-                    max_area = max(max_area, area)
+        for num_i in range(i, n):
+            for num_j in range(j, m):
+                max_num = max(max_num, cal(i, j, num_i, num_j))
 
-print(max_area if max_area > 0 else -1)
+
+if max_num == 0:
+    print(-1)
+else:
+    print(max_num)
