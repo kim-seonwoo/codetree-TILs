@@ -3,7 +3,7 @@ grid = [list(map(int, input().split())) for _ in range(n)]
 
 # Please write your code here.
 
-max_num = 0
+max_num = -1
 
 def cal(x, y, plus_i, plus_j):
     result = 0
