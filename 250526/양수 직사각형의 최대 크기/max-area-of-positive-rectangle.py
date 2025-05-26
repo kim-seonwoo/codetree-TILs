@@ -24,4 +24,7 @@ for i in range(n):
                 max_num = max(max_num, cal(i, j, num_i, num_j))
 
 
-print(max_num)
+if max_num == 0:
+    print(-1)
+else:
+    print(max_num)
