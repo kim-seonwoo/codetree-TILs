@@ -3,6 +3,7 @@ blocks = [int(input()) for _ in range(n)]
 s1, e1 = map(int, input().split())
 s2, e2 = map(int, input().split())
 
+
 # 첫 번째 제거 구간 제거
 temp = []
 for i in range(0, s1 - 1):
@@ -20,8 +21,10 @@ for i in range(e2, len(blocks)):
 blocks = temp
 
 # 출력
-if not blocks:
+if blocks == []:
     print(0)
 else:
-    for elem in blocks:
-        print(elem)
+    print(len(blocks))
+
+for elem in blocks:
+    print(elem)
